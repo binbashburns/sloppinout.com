@@ -702,16 +702,88 @@ body {
 }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE — TABLET (max 768px)
    ============================================================ */
 
-@media (max-width: 600px) {
-  .desktop {
-    padding: 8px 8px 48px;
+@media (max-width: 768px) {
+  .main-window {
+    max-width: 100%;
   }
 
+  .links-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero-left {
+    flex: 0 0 180px;
+  }
+
+  .logo-text {
+    font-size: 44px;
+  }
+
+  .taskbar-window-btn {
+    min-width: 80px;
+    font-size: 10px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (max 520px)
+   ============================================================ */
+
+@media (max-width: 520px) {
+  body {
+    font-size: 13px;
+  }
+
+  .desktop {
+    padding: 6px 6px 52px;
+  }
+
+  /* Taskbar: drop the window button label to save space */
+  .taskbar-window-btn {
+    min-width: 0;
+    padding: 3px 6px;
+    font-size: 10px;
+  }
+
+  /* Menu bar: allow horizontal scroll instead of wrapping */
+  .menu-bar {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Address bar: hide the "Address" label */
+  .address-label {
+    display: none;
+  }
+
+  /* Window body: tighter padding */
+  .window-body {
+    padding: 8px;
+    margin: 2px;
+  }
+
+  /* Marquee: slightly smaller */
+  .marquee-container {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  /* Fan callout: smaller text, wrap naturally */
+  .fan-callout {
+    font-size: 14px;
+    padding: 5px 8px;
+    margin-bottom: 8px;
+  }
+
+  /* Hero: stack vertically, full width */
   .hero-section {
     flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
   }
 
   .hero-left {
@@ -719,18 +791,114 @@ body {
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 8px;
     justify-content: center;
+    align-items: flex-start;
   }
 
   .logo-box {
-    width: auto;
-  }
-
-  .links-grid {
-    grid-template-columns: 1fr 1fr;
+    flex: 1;
+    min-width: 130px;
+    max-width: 180px;
+    padding: 10px;
   }
 
   .logo-text {
-    font-size: 40px;
+    font-size: 38px;
+  }
+
+  .logo-subtitle {
+    font-size: 15px;
+  }
+
+  .under-construction {
+    font-size: 12px;
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+  }
+
+  .visitor-counter {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .hero-right {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Links: 2 columns on mobile */
+  .links-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .link-window-body {
+    padding: 12px 8px;
+    gap: 4px;
+  }
+
+  .link-icon {
+    font-size: 28px;
+  }
+
+  .link-name {
+    font-size: 20px;
+  }
+
+  .link-desc {
+    font-size: 10px;
+  }
+
+  .retro-btn {
+    font-size: 13px;
+    padding: 6px 10px;  /* bigger touch target */
+  }
+
+  /* Section header */
+  .section-header {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  /* Winamp: bigger touch targets */
+  .winamp-bar {
+    padding: 5px 8px;
+    gap: 6px;
+  }
+
+  .winamp-btn {
+    width: 32px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .winamp-track {
+    height: 24px;
+  }
+
+  .winamp-marquee {
+    font-size: 15px;
+  }
+
+  .winamp-slider {
+    width: 48px;
+  }
+
+  /* About body */
+  .about-body {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .footer-text {
+    font-size: 9px;
+    line-height: 1.8;
+  }
+
+  /* Status bar */
+  .status-bar {
+    font-size: 9px;
   }
 }

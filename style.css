@@ -278,6 +278,28 @@ body {
 }
 
 /* ============================================================
+   FAN CALLOUT
+   ============================================================ */
+
+.fan-callout {
+  background: #000080;
+  color: #ffffff;
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  padding: 5px 12px;
+  text-align: center;
+  margin-bottom: 12px;
+  border: 2px solid;
+  border-color: var(--win-light) var(--win-darker) var(--win-darker) var(--win-light);
+  letter-spacing: 0.5px;
+}
+
+.fan-callout a {
+  color: #ffff00;
+  text-decoration: underline;
+}
+
+/* ============================================================
    HERO
    ============================================================ */
 
@@ -410,7 +432,7 @@ body {
 
 .links-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 12px;
 }
 
@@ -477,6 +499,12 @@ body {
 
 .patreon-card .link-icon { color: #f96854; }
 .patreon-card .link-name { color: #f96854; }
+
+.apple-card .link-icon { color: #fc3c44; }
+.apple-card .link-name { color: #fc3c44; }
+
+.rss-card .link-icon { color: #f26522; }
+.rss-card .link-name { color: #f26522; }
 
 /* ============================================================
    RETRO BUTTON
@@ -558,6 +586,101 @@ body {
 }
 
 /* ============================================================
+   WINAMP PLAYER
+   ============================================================ */
+
+.winamp-bar {
+  background: var(--win-black);
+  border-top: 2px solid var(--win-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  margin: 0 4px;
+}
+
+.winamp-left {
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.winamp-btn {
+  background: #1a1a1a;
+  border: 1px solid #444;
+  color: #00ff00;
+  font-size: 11px;
+  width: 22px;
+  height: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+
+.winamp-btn:hover {
+  background: #2a2a2a;
+  border-color: #00ff00;
+}
+
+.winamp-btn:active {
+  background: #00ff00;
+  color: #000;
+}
+
+.winamp-track {
+  flex: 1;
+  background: #000;
+  border: 1px solid #333;
+  height: 18px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.winamp-marquee {
+  display: flex;
+  white-space: nowrap;
+  animation: winamp-scroll 14s linear infinite;
+  animation-play-state: paused;
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+  font-size: 14px;
+  padding-left: 100%;
+}
+
+.winamp-marquee.playing {
+  animation-play-state: running;
+}
+
+@keyframes winamp-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.winamp-vol {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.winamp-vol-label {
+  color: #00ff00;
+  font-family: 'VT323', monospace;
+  font-size: 13px;
+}
+
+.winamp-slider {
+  width: 60px;
+  accent-color: #00ff00;
+  height: 4px;
+  cursor: pointer;
+}
+
+/* ============================================================
    STATUS BAR
    ============================================================ */
 
@@ -604,7 +727,7 @@ body {
   }
 
   .links-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .logo-text {

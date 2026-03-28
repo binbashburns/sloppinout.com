@@ -52,6 +52,24 @@
         <button type="button" class="go-btn">Go</button>
       </div>
 
+      <!-- Winamp Player -->
+      <div class="winamp-bar">
+        <div class="winamp-left">
+          <button type="button" id="winamp-play" class="winamp-btn" title="Play/Pause">&#9654;</button>
+          <button type="button" id="winamp-stop" class="winamp-btn" title="Stop">&#9632;</button>
+        </div>
+        <div class="winamp-track">
+          <div class="winamp-marquee">
+            <span id="winamp-label">&#9835; Level VI - moodmode &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#9835; Level VI - moodmode &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </div>
+        </div>
+        <div class="winamp-vol">
+          <label for="winamp-volume" class="winamp-vol-label">VOL</label>
+          <input type="range" id="winamp-volume" min="0" max="1" step="0.05" value="0.5" class="winamp-slider">
+        </div>
+      </div>
+      <audio id="winamp-audio" src="audio/theme.mp3" loop></audio>
+
       <!-- Window Content -->
       <div class="window-body">
 
@@ -60,6 +78,11 @@
           <marquee behavior="scroll" direction="left" scrollamount="4">
             &#11088; WELCOME TO SLOPPIN OUT &#11088; &nbsp;&nbsp;&nbsp; THE PODCAST EXTRA FROM WHAT'S OUR PODCAST &nbsp;&nbsp;&nbsp; BECK BENNETT + KYLE MOONEY &nbsp;&nbsp;&nbsp; &#11088; BEST VIEWED IN INTERNET EXPLORER 6.0 AT 800x600 &#11088; &nbsp;&nbsp;&nbsp; SLOPPIN. OUT. &nbsp;&nbsp;&nbsp;
           </marquee>
+        </div>
+
+        <!-- Fan Callout -->
+        <div class="fan-callout">
+          &#128075; HEY ROCCO'S &amp; ROCCETTE'S! &#128075; &nbsp; This open source fan site was made by the fans, for the fans. &nbsp; <a href="https://github.com/binbashburns/sloppinout.com" target="_blank" rel="noopener noreferrer">Contribute on GitHub!</a>
         </div>
 
         <!-- Hero Section -->
@@ -112,6 +135,28 @@
 
           <div class="links-grid">
 
+            <!-- Patreon (FIRST) -->
+            <a href="https://www.patreon.com/cw/WhatsOurPodcast" target="_blank" rel="noopener noreferrer" class="link-card patreon-card">
+              <div class="window link-window">
+                <div class="title-bar">
+                  <div class="title-bar-text">
+                    <img src="https://win98icons.alexmeub.com/icons/png/coins-0.png" alt="" width="16" height="16">
+                    Patreon.exe
+                  </div>
+                  <div class="title-bar-controls">
+                    <button type="button" class="title-btn">_</button>
+                    <button type="button" class="title-btn close-btn">&#x2715;</button>
+                  </div>
+                </div>
+                <div class="link-window-body">
+                  <div class="link-icon">&#9829;</div>
+                  <div class="link-name">PATREON</div>
+                  <div class="link-desc">Weekly bonus eps, sillies &amp; pitch YOUR podcast!</div>
+                  <button type="button" class="retro-btn">CLICK HERE!!!!</button>
+                </div>
+              </div>
+            </a>
+
             <!-- YouTube -->
             <a href="https://www.youtube.com/@whatsourpodcast" target="_blank" rel="noopener noreferrer" class="link-card youtube-card">
               <div class="window link-window">
@@ -135,7 +180,7 @@
             </a>
 
             <!-- Spotify -->
-            <a href="https://open.spotify.com/show/6Lbre2Vjq8Ym9qe0GKfBAq?si=87148d98508844cc" target="_blank" rel="noopener noreferrer" class="link-card spotify-card">
+            <a href="https://open.spotify.com/show/6Lbre2Vjq8Ym9qe0GKfBAq" target="_blank" rel="noopener noreferrer" class="link-card spotify-card">
               <div class="window link-window">
                 <div class="title-bar">
                   <div class="title-bar-text">
@@ -156,13 +201,13 @@
               </div>
             </a>
 
-            <!-- Patreon -->
-            <a href="https://www.patreon.com/cw/WhatsOurPodcast" target="_blank" rel="noopener noreferrer" class="link-card patreon-card">
+            <!-- Apple Podcasts -->
+            <a href="https://itunes.apple.com/us/podcast/id1834487732?at=1000lMpE&ct=hgdotcom-podcast-page" target="_blank" rel="noopener noreferrer" class="link-card apple-card">
               <div class="window link-window">
                 <div class="title-bar">
                   <div class="title-bar-text">
-                    <img src="https://win98icons.alexmeub.com/icons/png/coins-0.png" alt="" width="16" height="16">
-                    Patreon.exe
+                    <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-0.png" alt="" width="16" height="16">
+                    iTunes.exe
                   </div>
                   <div class="title-bar-controls">
                     <button type="button" class="title-btn">_</button>
@@ -170,9 +215,31 @@
                   </div>
                 </div>
                 <div class="link-window-body">
-                  <div class="link-icon">&#9829;</div>
-                  <div class="link-name">PATREON</div>
-                  <div class="link-desc">Weekly bonus eps, sillies &amp; pitch YOUR podcast!</div>
+                  <div class="link-icon">&#127911;</div>
+                  <div class="link-name">APPLE</div>
+                  <div class="link-desc">Listen on Apple Podcasts</div>
+                  <button type="button" class="retro-btn">CLICK HERE!!!!</button>
+                </div>
+              </div>
+            </a>
+
+            <!-- RSS -->
+            <a href="https://rss.art19.com/whats-our-podcast" target="_blank" rel="noopener noreferrer" class="link-card rss-card">
+              <div class="window link-window">
+                <div class="title-bar">
+                  <div class="title-bar-text">
+                    <img src="https://win98icons.alexmeub.com/icons/png/internet_explorer-0.png" alt="" width="16" height="16">
+                    RSS Feed
+                  </div>
+                  <div class="title-bar-controls">
+                    <button type="button" class="title-btn">_</button>
+                    <button type="button" class="title-btn close-btn">&#x2715;</button>
+                  </div>
+                </div>
+                <div class="link-window-body">
+                  <div class="link-icon">&#128225;</div>
+                  <div class="link-name">RSS</div>
+                  <div class="link-desc">Subscribe via RSS</div>
                   <button type="button" class="retro-btn">CLICK HERE!!!!</button>
                 </div>
               </div>
@@ -196,12 +263,24 @@
               </div>
             </div>
             <div class="about-body">
-              <p class="unofficial-notice">&#9888; <strong>UNOFFICIAL FAN SITE.</strong> All rights belong to <strong>Headgum</strong>. &#9888;</p>
+              <p class="unofficial-notice">&#9888; <strong>UNOFFICIAL FAN SITE.</strong> All rights belong to <a href="https://headgum.com/" target="_blank" rel="noopener noreferrer"><strong>Headgum</strong></a>. &#9888;</p>
               <hr class="retro-hr">
-              <p><strong>Sloppin Out</strong> is the Patreon bonus content for <strong>What's Our Podcast</strong> by Beck Bennett and Kyle Mooney, a <strong>Headgum</strong> podcast. Patreon subscribers get weekly bonus episodes, sillies, and the chance to pitch on <strong>What's YOUR Podcast</strong>.</p>
+              <p><strong>Sloppin Out</strong> is the Patreon bonus content for <strong>What's Our Podcast</strong> by Beck Bennett and Kyle Mooney. Patreon subscribers get weekly bonus episodes, sillies, and the chance to pitch on <strong>What's YOUR Podcast</strong>.</p>
+              <hr class="retro-hr">
+              <p>
+                This is a <a href="https://headgum.com/" target="_blank" rel="noopener noreferrer">Headgum</a> podcast.
+                Follow Headgum on
+                <a href="https://x.com/headgum" target="_blank" rel="noopener noreferrer">Twitter</a>,
+                <a href="https://www.instagram.com/headgum/" target="_blank" rel="noopener noreferrer">Instagram</a>,
+                and <a href="https://www.tiktok.com/@headgum" target="_blank" rel="noopener noreferrer">TikTok</a>.
+                Advertise on What's Our Podcast? via <a href="https://gumball.fm/" target="_blank" rel="noopener noreferrer">Gumball.fm</a>.
+              </p>
               <hr class="retro-hr">
               <p class="footer-text">
-                All content belongs to Headgum &nbsp;|&nbsp; Unofficial fan site &nbsp;|&nbsp;
+                All content belongs to <a href="https://headgum.com/" target="_blank" rel="noopener noreferrer">Headgum</a> &nbsp;|&nbsp;
+                Open source fan site by Rocco's &amp; Roccette's &nbsp;|&nbsp;
+                <a href="https://github.com/binbashburns/sloppinout.com" target="_blank" rel="noopener noreferrer">Contribute on GitHub</a> &nbsp;|&nbsp;
+                Music: "Level VI" by moodmode (<a href="https://pixabay.com/music/video-games-level-vi-274939/" target="_blank" rel="noopener noreferrer">Pixabay</a>) &nbsp;|&nbsp;
                 Best viewed in Netscape Navigator 4.0
               </p>
             </div>

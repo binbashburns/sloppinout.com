@@ -1,0 +1,15 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "no-deprecated-attr": "off",
+    "no-trailing-whitespace": "off",
+    "element-permitted-content": "off",
+    "svg-focusable": "off",
+    "require-sri": "off",
+    "long-title": "off",
+    "no-unknown-elements": ["warn", { "exclude": ["marquee"] }],
+    "deprecated": "off",
+    "attribute-allowed-values": "off",
+    "void-content": "off"
+  }
+}

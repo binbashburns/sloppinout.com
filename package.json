@@ -1,0 +1,13 @@
+{
+  "name": "sloppinout-com",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "npm run test:security && npm run test:html",
+    "test:security": "node tests/security.js",
+    "test:html": "html-validate index.html"
+  },
+  "devDependencies": {
+    "html-validate": "^9.0.0"
+  }
+}

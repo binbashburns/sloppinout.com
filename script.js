@@ -1,3 +1,7 @@
+// Hide broken under-construction gif gracefully
+const ucImg = document.getElementById('under-construction-img');
+if (ucImg) ucImg.addEventListener('error', () => { ucImg.style.display = 'none'; });
+
 // Clock
 function updateClock() {
   const now = new Date();

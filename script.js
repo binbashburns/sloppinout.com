@@ -22,6 +22,38 @@ document.querySelectorAll('.link-card .retro-btn').forEach(btn => {
   });
 });
 
+// Winamp player
+const audio    = document.getElementById('winamp-audio');
+const playBtn  = document.getElementById('winamp-play');
+const stopBtn  = document.getElementById('winamp-stop');
+const volSlider = document.getElementById('winamp-volume');
+const marquee  = document.querySelector('.winamp-marquee');
+
+audio.volume = volSlider.value;
+
+playBtn.addEventListener('click', () => {
+  if (audio.paused) {
+    audio.play();
+    playBtn.textContent = '\u23F8';
+    marquee.classList.add('playing');
+  } else {
+    audio.pause();
+    playBtn.textContent = '\u25B6';
+    marquee.classList.remove('playing');
+  }
+});
+
+stopBtn.addEventListener('click', () => {
+  audio.pause();
+  audio.currentTime = 0;
+  playBtn.textContent = '\u25B6';
+  marquee.classList.remove('playing');
+});
+
+volSlider.addEventListener('input', () => {
+  audio.volume = volSlider.value;
+});
+
 // Fake close button alert (classic 90s)
 document.querySelectorAll('.close-btn').forEach(btn => {
   btn.addEventListener('click', () => {

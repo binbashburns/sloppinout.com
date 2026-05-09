@@ -1,0 +1,31 @@
+name: security
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "**/*.js"
+      - "**/*.mjs"
+      - "**/*.ts"
+      - "**/*.tsx"
+      - "**/*.jsx"
+      - "package.json"
+      - "package-lock.json"
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  sast:
+    uses: binbashburns/security-pipelines/.github/workflows/sast.yml@main
+    with:
+      language: javascript,typescript
+
+  sbom:
+    uses: binbashburns/security-pipelines/.github/workflows/sbom-vuln.yml@main
+
+  secrets:
+    uses: binbashburns/security-pipelines/.github/workflows/secrets.yml@main

@@ -30,7 +30,7 @@ Made by the fans (Rocco's & Roccette's), for the fans.
 - Live visitor counter
 - Links to all official platforms
 - GitHub Actions CI/CD — deploys to GitHub Pages on every push to `main`
-- Security-checked on every PR (11 automated checks)
+- Security-checked on every PR (15 automated checks, plus SAST, SBOM, secret, link and DAST scanning)
 
 ---
 
@@ -55,14 +55,19 @@ Then visit `http://localhost:8080`.
 ## Running Tests
 
 ```bash
-npm install
+npm ci
 npm test
 ```
 
 Tests run automatically on every pull request via GitHub Actions. They include:
 
 - HTML validation (`html-validate`)
-- Security checks (inline handlers, mixed content, XSS vectors, missing `rel` attributes, etc.)
+- Security checks (inline handlers, mixed content, XSS vectors, tabnabbing via `window.open`,
+  missing `rel` attributes, unpinned external scripts, workflow permissions, etc.)
+
+A separate `security` workflow runs Semgrep (SAST), Syft + Grype (SBOM and vulnerabilities),
+TruffleHog (secrets), lychee (link check) and a ZAP baseline scan (DAST) on every PR, every push
+to `main`, and weekly.
 
 ---
 
@@ -73,7 +78,7 @@ This site is open source and contributions are welcome from all Rocco's and Rocc
 1. Fork the repo
 2. Create a branch (`git checkout -b my-feature`)
 3. Make your changes
-4. Run `npm test` to make sure everything passes
+4. Run `npm test` to make sure everything passes (see `CLAUDE.md` for the conventions the tests enforce)
 5. Open a pull request
 
 **[github.com/binbashburns/sloppinout.com](https://github.com/binbashburns/sloppinout.com)**

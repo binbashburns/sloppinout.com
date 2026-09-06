@@ -7,17 +7,46 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # Never cancel a deploy that is already publishing — a half-applied Pages
+  # deployment is worse than a queued one.
+  cancel-in-progress: false
 
 jobs:
+  # main can be pushed to directly, so the tests have to run here too; pr.yml
+  # only covers the pull_request path.
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
   deploy:
     name: Deploy
+    needs: test
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -29,10 +58,32 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # Publish only what the site actually serves. Uploading the repo root also
+      # shipped tests/, the 574KB screenshots/ dir and the build config.
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='tests' \
+            --exclude='screenshots' \
+            --exclude='_site' \
+            --exclude='package.json' \
+            --exclude='package-lock.json' \
+            --exclude='.htmlvalidate.json' \
+            --exclude='.htmlvalidate-elements.json' \
+            --exclude='.gitignore' \
+            --exclude='.lycheeignore' \
+            --exclude='*.md' \
+            ./ _site/
+          echo "Publishing:" && find _site -type f | sort
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment

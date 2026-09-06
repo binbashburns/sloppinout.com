@@ -1,0 +1,9 @@
+{
+  "$schema": "https://html-validate.org/schemas/elements.json",
+
+  "marquee": {
+    "flow": true,
+    "phrasing": true,
+    "permittedContent": ["@phrasing"]
+  }
+}

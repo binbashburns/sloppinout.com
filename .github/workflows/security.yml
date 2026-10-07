@@ -10,6 +10,8 @@ on:
     branches: [main]
   schedule:
     # Weekly, so dead podcast/Patreon links surface without waiting for a PR.
+    # Note: the reusable link-check only opens a tracking issue on push events, so
+    # the cron relies on fail-on-error below to make a dead link visible at all.
     - cron: "0 6 * * 1"
 
 permissions:
@@ -39,6 +41,7 @@ jobs:
     with:
       paths: "**/*.html **/*.md"
       create-issue: true
+      fail-on-error: true
 
   # Stage 3 — dynamic scan against the site served from the repo root.
   dast:

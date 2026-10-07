@@ -374,11 +374,6 @@ body {
   text-align: center;
 }
 
-.counter {
-  font-size: 20px;
-  letter-spacing: 3px;
-}
-
 .hero-right {
   flex: 1;
   min-width: 280px;

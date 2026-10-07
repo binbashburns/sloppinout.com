@@ -101,7 +101,7 @@ The retro styling must not cost real usability:
 ## Third-party runtime dependencies
 
 The page loads from `fonts.googleapis.com`/`fonts.gstatic.com`, `win98icons.alexmeub.com`,
-`visitor-badge.laobi.icu` and `www.youtube.com`. All are keyless and unauthenticated.
+`visitor-badge.laobi.icu` and `www.youtube-nocookie.com`. All are keyless and unauthenticated.
 
 Prefer self-hosting or inlining over hotlinking. The under-construction badge is an inline SVG
 data URI precisely because the image it replaced was silently removed from imgur — and because
@@ -117,11 +117,12 @@ imgur served its "removed" placeholder with HTTP 200, the `onerror` fallback nev
 
 Notes:
 - `deploy.yml` assembles a `_site/` directory rather than uploading the repo root, so `tests/`,
-  `screenshots/` and build config are not published. **Add new site assets to that rsync
-  allowlist** or they will not ship.
+  `screenshots/` and build config are not published. The rsync step is an **exclude** list, so
+  new assets ship automatically; anything that must *not* be published (tests, docs, config) has
+  to be added to the excludes.
 - `security.yml` deliberately has **no `paths:` filter**. An earlier version filtered to JS/TS
   files, which meant PRs touching `index.html` or `style.css` — most PRs — ran no security scan.
-- `.lycheeignore` suppresses hosts that block bots, so the weekly link check doesn't open
+- `.lycheeignore` suppresses hosts that block bots, so the link check doesn't fail or open
   false-positive issues.
 - Pages deploys use `cancel-in-progress: false`; never cancel an in-flight production deploy.
 

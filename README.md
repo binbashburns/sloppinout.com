@@ -95,4 +95,11 @@ This is an **unofficial** fan site. All podcast content, branding, and rights be
 
 ---
 
+## License
+
+The site's own code is released under the [MIT License](LICENSE). The podcast content, names and
+branding it links to are not covered by that licence and remain the property of Headgum.
+
+---
+
 *Best viewed in Netscape Navigator 4.0 at 800x600.*

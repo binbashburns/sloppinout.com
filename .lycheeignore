@@ -9,3 +9,9 @@ https://www\.tiktok\.com/.*
 
 # Rejects HEAD and rate-limits datacenter IPs
 https://itunes\.apple\.com/.*
+
+# Cloudflare JS challenge to non-browser clients
+https://pixabay\.com/.*
+
+# 403s datacenter IPs (GitHub runners); fine from a residential connection
+https://www\.patreon\.com/.*

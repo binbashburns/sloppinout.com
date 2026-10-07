@@ -100,8 +100,12 @@ The retro styling must not cost real usability:
 
 ## Third-party runtime dependencies
 
-The page loads from `fonts.googleapis.com`/`fonts.gstatic.com`, `win98icons.alexmeub.com`,
-`visitor-badge.laobi.icu` and `www.youtube-nocookie.com`. All are keyless and unauthenticated.
+The page loads from `fonts.googleapis.com`/`fonts.gstatic.com`, `visitor-badge.laobi.icu` and
+`www.youtube-nocookie.com`. All are keyless and unauthenticated.
+
+The Win98 title-bar icons in `icons/` are self-hosted copies from Alex Meub's icon pack. They
+were hotlinked from `win98icons.alexmeub.com` until that host stopped serving `/icons/png/`
+(every request returned 403), which broke all seven icons on the live site.
 
 Prefer self-hosting or inlining over hotlinking. The under-construction badge is an inline SVG
 data URI precisely because the image it replaced was silently removed from imgur — and because

@@ -1,62 +1,84 @@
-// Hide broken under-construction gif gracefully
-const ucImg = document.getElementById('under-construction-img');
-if (ucImg) ucImg.addEventListener('error', () => { ucImg.style.display = 'none'; });
+['under-construction-img', 'visitor-badge'].forEach(id => {
+  const img = document.getElementById(id);
+  if (img) img.addEventListener('error', () => { img.style.display = 'none'; });
+});
 
-// Clock
+const clockEl = document.getElementById('clock');
+
 function updateClock() {
+  if (!clockEl) return;
   const now = new Date();
   let hours = now.getHours();
   const minutes = String(now.getMinutes()).padStart(2, '0');
   const ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12 || 12;
-  document.getElementById('clock').textContent = `${hours}:${minutes} ${ampm}`;
+  clockEl.textContent = `${hours}:${minutes} ${ampm}`;
 }
-updateClock();
-setInterval(updateClock, 60000);
 
-// Make link card clicks work (since the whole card is an <a>)
-document.querySelectorAll('.link-card .retro-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.open(btn.closest('a').href, '_blank');
-  });
+function scheduleClock() {
+  updateClock();
+  setTimeout(scheduleClock, 60000 - (Date.now() % 60000));
+}
+scheduleClock();
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) updateClock();
 });
 
 // Winamp player
-const audio    = document.getElementById('winamp-audio');
-const playBtn  = document.getElementById('winamp-play');
-const stopBtn  = document.getElementById('winamp-stop');
+const audio     = document.getElementById('winamp-audio');
+const playBtn   = document.getElementById('winamp-play');
+const stopBtn   = document.getElementById('winamp-stop');
 const volSlider = document.getElementById('winamp-volume');
-const marquee  = document.querySelector('.winamp-marquee');
+const marquee   = document.querySelector('.winamp-marquee');
 
-audio.volume = volSlider.value;
+if (audio && playBtn && stopBtn && volSlider) {
+  audio.volume = Number(volSlider.value);
 
-playBtn.addEventListener('click', () => {
-  if (audio.paused) {
-    audio.play();
-    playBtn.textContent = '\u23F8';
-    marquee.classList.add('playing');
-  } else {
+  const syncPlayState = () => {
+    const playing = !audio.paused;
+    playBtn.textContent = playing ? '⏸' : '▶';
+    playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+    if (marquee) marquee.classList.toggle('playing', playing);
+  };
+
+  audio.addEventListener('play', syncPlayState);
+  audio.addEventListener('pause', syncPlayState);
+  audio.addEventListener('ended', syncPlayState);
+  audio.addEventListener('error', syncPlayState);
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      const played = audio.play();
+      // Older browsers return undefined instead of a promise
+      if (played) played.catch(syncPlayState);
+    } else {
+      audio.pause();
+    }
+  });
+
+  stopBtn.addEventListener('click', () => {
     audio.pause();
-    playBtn.textContent = '\u25B6';
-    marquee.classList.remove('playing');
-  }
-});
+    audio.currentTime = 0;
+  });
 
-stopBtn.addEventListener('click', () => {
-  audio.pause();
-  audio.currentTime = 0;
-  playBtn.textContent = '\u25B6';
-  marquee.classList.remove('playing');
-});
+  volSlider.addEventListener('input', () => {
+    audio.volume = Number(volSlider.value);
+  });
+}
 
-volSlider.addEventListener('input', () => {
-  audio.volume = volSlider.value;
-});
 
-// Fake close button alert (classic 90s)
-document.querySelectorAll('.close-btn').forEach(btn => {
+document.querySelectorAll('button.close-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     alert('ERROR: Cannot close this window.\n\nSloppin Out is eternal.');
   });
 });
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+function applyMotionPreference() {
+  document.querySelectorAll('marquee').forEach(el => {
+    el.setAttribute('scrollamount', reduceMotion.matches ? '0' : '4');
+  });
+}
+applyMotionPreference();
+reduceMotion.addEventListener('change', applyMotionPreference);

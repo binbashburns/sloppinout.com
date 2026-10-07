@@ -2,15 +2,13 @@
    SLOPPIN OUT — Windows 95 / IE Retro Stylesheet
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
-
 :root {
   --win-gray: #c0c0c0;
   --win-dark: #808080;
   --win-darker: #404040;
   --win-light: #ffffff;
   --win-blue: #000080;
-  --win-blue-light: #1084d0;
+  --win-blue-light: #0f78bd;
   --win-teal: #008080;
   --win-black: #000000;
   --win-border-light: #dfdfdf;
@@ -215,8 +213,7 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  border-bottom: 2px solid;
-  border-color: var(--win-dark) var(--win-light) var(--win-light) var(--win-dark);
+  border-bottom: 2px solid var(--win-dark);
 }
 
 .address-label {
@@ -329,7 +326,12 @@ body {
   width: 100%;
 }
 
+.logo-heading {
+  font-weight: normal;
+}
+
 .logo-text {
+  display: block;
   font-family: 'VT323', monospace;
   font-size: 52px;
   line-height: 1;
@@ -370,11 +372,6 @@ body {
   border: 2px inset var(--win-dark);
   width: 100%;
   text-align: center;
-}
-
-.counter {
-  font-size: 20px;
-  letter-spacing: 3px;
 }
 
 .hero-right {
@@ -420,6 +417,7 @@ body {
 .section-header {
   background: var(--win-blue);
   color: white;
+  font-weight: normal;
   font-family: 'VT323', monospace;
   font-size: 22px;
   padding: 4px 12px;
@@ -448,7 +446,7 @@ body {
 }
 
 .link-card:hover .title-bar {
-  background: linear-gradient(to right, #000099, #3399ff);
+  background: linear-gradient(to right, #0000cc, var(--win-blue-light));
 }
 
 .link-card:active {
@@ -648,7 +646,6 @@ body {
   color: #00ff00;
   font-family: 'VT323', monospace;
   font-size: 14px;
-  padding-left: 100%;
 }
 
 .winamp-marquee.playing {
@@ -900,5 +897,24 @@ body {
   /* Status bar */
   .status-bar {
     font-size: 9px;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .winamp-marquee {
+    animation: none;
   }
 }

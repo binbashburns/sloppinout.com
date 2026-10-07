@@ -30,7 +30,7 @@ Made by the fans (Rocco's & Roccette's), for the fans.
 - Live visitor counter
 - Links to all official platforms
 - GitHub Actions CI/CD — deploys to GitHub Pages on every push to `main`
-- Security-checked on every PR (11 automated checks)
+- Security-checked on every PR (15 automated checks, plus SAST, SBOM, secret, link and DAST scanning)
 
 ---
 
@@ -55,14 +55,19 @@ Then visit `http://localhost:8080`.
 ## Running Tests
 
 ```bash
-npm install
+npm ci
 npm test
 ```
 
 Tests run automatically on every pull request via GitHub Actions. They include:
 
 - HTML validation (`html-validate`)
-- Security checks (inline handlers, mixed content, XSS vectors, missing `rel` attributes, etc.)
+- Security checks (inline handlers, mixed content, XSS vectors, tabnabbing via `window.open`,
+  missing `rel` attributes, unpinned external scripts, workflow permissions, etc.)
+
+A separate `security` workflow runs Semgrep (SAST), Syft + Grype (SBOM and vulnerabilities),
+TruffleHog (secrets), lychee (link check) and a ZAP baseline scan (DAST) on every PR, every push
+to `main`, and weekly.
 
 ---
 
@@ -73,7 +78,7 @@ This site is open source and contributions are welcome from all Rocco's and Rocc
 1. Fork the repo
 2. Create a branch (`git checkout -b my-feature`)
 3. Make your changes
-4. Run `npm test` to make sure everything passes
+4. Run `npm test` to make sure everything passes (see `CLAUDE.md` for the conventions the tests enforce)
 5. Open a pull request
 
 **[github.com/binbashburns/sloppinout.com](https://github.com/binbashburns/sloppinout.com)**
@@ -87,6 +92,13 @@ This is an **unofficial** fan site. All podcast content, branding, and rights be
 - Background music: "Level VI" by [moodmode](https://pixabay.com/users/moodmode-33139253/) via [Pixabay](https://pixabay.com/music/video-games-level-vi-274939/) (Pixabay License)
 - Retro UI icons via [alexmeub's Win98 Icons](https://win98icons.alexmeub.com/)
 - Fonts: [VT323](https://fonts.google.com/specimen/VT323) via Google Fonts
+
+---
+
+## License
+
+The site's own code is released under the [MIT License](LICENSE). The podcast content, names and
+branding it links to are not covered by that licence and remain the property of Headgum.
 
 ---
 

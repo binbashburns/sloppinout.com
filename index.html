@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SLOPPIN OUT - Beck Bennett &amp; Kyle Mooney</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&amp;display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,8 +16,8 @@
 
     <!-- Taskbar -->
     <div class="taskbar">
-      <button type="button" class="start-btn">
-        <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" alt="Windows" width="16" height="16">
+      <button type="button" class="start-btn" aria-hidden="true" tabindex="-1">
+        <img src="icons/windows.png" alt="" width="16" height="16">
         <strong>Start</strong>
       </button>
       <div class="taskbar-divider"></div>
@@ -26,18 +29,18 @@
     <div class="window main-window">
       <div class="title-bar">
         <div class="title-bar-text">
-          <img src="https://win98icons.alexmeub.com/icons/png/html-4.png" alt="" width="16" height="16">
+          <img src="icons/html.png" alt="" width="16" height="16">
           Sloppin Out: Beck Bennett &amp; Kyle Mooney
         </div>
         <div class="title-bar-controls">
-          <button type="button" class="title-btn">_</button>
-          <button type="button" class="title-btn">&#9633;</button>
-          <button type="button" class="title-btn close-btn">&#x2715;</button>
+          <button type="button" class="title-btn" aria-hidden="true" tabindex="-1">_</button>
+          <button type="button" class="title-btn" aria-hidden="true" tabindex="-1">&#9633;</button>
+          <button type="button" class="title-btn close-btn" aria-label="Close">&#x2715;</button>
         </div>
       </div>
 
       <!-- Menu Bar -->
-      <div class="menu-bar">
+      <div class="menu-bar" aria-hidden="true">
         <span class="menu-item">File</span>
         <span class="menu-item">Edit</span>
         <span class="menu-item">View</span>
@@ -46,21 +49,21 @@
       </div>
 
       <!-- Address Bar -->
-      <div class="address-bar">
+      <div class="address-bar" aria-hidden="true">
         <span class="address-label">Address</span>
         <div class="address-input">http://www.sloppinout.com/index.html</div>
-        <button type="button" class="go-btn">Go</button>
+        <button type="button" class="go-btn" aria-hidden="true" tabindex="-1">Go</button>
       </div>
 
       <!-- Winamp Player -->
       <div class="winamp-bar">
         <div class="winamp-left">
-          <button type="button" id="winamp-play" class="winamp-btn" title="Play/Pause">&#9654;</button>
-          <button type="button" id="winamp-stop" class="winamp-btn" title="Stop">&#9632;</button>
+          <button type="button" id="winamp-play" class="winamp-btn" aria-label="Play">&#9654;</button>
+          <button type="button" id="winamp-stop" class="winamp-btn" aria-label="Stop">&#9632;</button>
         </div>
         <div class="winamp-track">
           <div class="winamp-marquee">
-            <span id="winamp-label">&#9835; Level VI - moodmode &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#9835; Level VI - moodmode &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>&#9835; Level VI - moodmode &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#9835; Level VI - moodmode &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </div>
         </div>
         <div class="winamp-vol">
@@ -68,10 +71,10 @@
           <input type="range" id="winamp-volume" min="0" max="1" step="0.05" value="0.5" class="winamp-slider">
         </div>
       </div>
-      <audio id="winamp-audio" src="audio/theme.mp3" loop></audio>
+      <audio id="winamp-audio" src="audio/theme.mp3" preload="none" loop></audio>
 
       <!-- Window Content -->
-      <div class="window-body">
+      <main class="window-body">
 
         <!-- Marquee header -->
         <div class="marquee-container">
@@ -89,16 +92,18 @@
         <div class="hero-section">
           <div class="hero-left">
             <div class="logo-box">
-              <div class="logo-text">SLOPPIN</div>
-              <div class="logo-text logo-out">OUT</div>
+              <h1 class="logo-heading">
+                <span class="logo-text">SLOPPIN</span>
+                <span class="logo-text logo-out">OUT</span>
+              </h1>
               <div class="logo-subtitle">★ w/ Beck &amp; Kyle ★</div>
             </div>
             <div class="under-construction">
-              <img id="under-construction-img" src="https://i.imgur.com/vKOCBgD.gif" alt="Under Construction">
+              <img id="under-construction-img" src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2788%27%20height%3D%2731%27%20viewBox%3D%270%200%2088%2031%27%20shape-rendering%3D%27crispEdges%27%3E%3Cdefs%3E%3Cpattern%20id%3D%27h%27%20width%3D%278%27%20height%3D%278%27%20patternUnits%3D%27userSpaceOnUse%27%20patternTransform%3D%27rotate%2845%29%27%3E%3Crect%20width%3D%278%27%20height%3D%278%27%20fill%3D%27%231a1a1a%27%2F%3E%3Crect%20width%3D%274%27%20height%3D%278%27%20fill%3D%27%23ffcc00%27%2F%3E%3C%2Fpattern%3E%3C%2Fdefs%3E%3Crect%20width%3D%2788%27%20height%3D%2731%27%20fill%3D%27url%28%23h%29%27%2F%3E%3Crect%20x%3D%270%27%20y%3D%279%27%20width%3D%2788%27%20height%3D%2713%27%20fill%3D%27%23000%27%2F%3E%3Ctext%20x%3D%2744%27%20y%3D%2718.6%27%20font-family%3D%27Courier%2Cmonospace%27%20font-size%3D%277%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffcc00%27%20text-anchor%3D%27middle%27%3EUNDER%20CONSTRUCTION%3C%2Ftext%3E%3C%2Fsvg%3E" alt="Under Construction" width="88" height="31">
               <span>&#9888; Site Under Construction &#9888;</span>
             </div>
             <div class="visitor-counter">
-              <img src="https://visitor-badge.laobi.icu/badge?page_id=sloppinout.com&left_color=black&right_color=limegreen&left_text=VISITORS" alt="Visitor Count">
+              <img src="https://visitor-badge.laobi.icu/badge?page_id=sloppinout.com&left_color=black&right_color=limegreen&left_text=VISITORS" alt="Visitor Count" id="visitor-badge" width="150" height="20">
             </div>
           </div>
 
@@ -106,20 +111,20 @@
             <div class="window video-window">
               <div class="title-bar">
                 <div class="title-bar-text">
-                  <img src="https://win98icons.alexmeub.com/icons/png/media_player_stream_video-0.png" alt="" width="16" height="16">
+                  <img src="icons/media-player.png" alt="" width="16" height="16">
                   Windows Media Player
                 </div>
                 <div class="title-bar-controls">
-                  <button type="button" class="title-btn">_</button>
-                  <button type="button" class="title-btn">&#9633;</button>
-                  <button type="button" class="title-btn close-btn">&#x2715;</button>
+                  <button type="button" class="title-btn" aria-hidden="true" tabindex="-1">_</button>
+                  <button type="button" class="title-btn" aria-hidden="true" tabindex="-1">&#9633;</button>
+                  <button type="button" class="title-btn close-btn" aria-label="Close">&#x2715;</button>
                 </div>
               </div>
               <div class="video-container">
                 <iframe
-                  src="https://www.youtube.com/embed/Yua7gQrP4zg"
+                  src="https://www.youtube-nocookie.com/embed/Yua7gQrP4zg"
                   title="YouTube video player"
-                  frameborder="0"
+                  loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerpolicy="strict-origin-when-cross-origin"
                   allowfullscreen>
@@ -131,7 +136,7 @@
 
         <!-- Links Section -->
         <div class="links-section">
-          <div class="section-header">&#128279; FIND US ONLINE &#128279;</div>
+          <h2 class="section-header">&#128279; FIND US ONLINE &#128279;</h2>
 
           <div class="links-grid">
 
@@ -140,19 +145,19 @@
               <div class="window link-window">
                 <div class="title-bar">
                   <div class="title-bar-text">
-                    <img src="https://win98icons.alexmeub.com/icons/png/coins-0.png" alt="" width="16" height="16">
+                    <img src="icons/users.png" alt="" width="16" height="16">
                     Patreon.exe
                   </div>
                   <div class="title-bar-controls">
-                    <button type="button" class="title-btn">_</button>
-                    <button type="button" class="title-btn close-btn">&#x2715;</button>
+                    <span class="title-btn" aria-hidden="true">_</span>
+                    <span class="title-btn close-btn" aria-hidden="true">&#x2715;</span>
                   </div>
                 </div>
                 <div class="link-window-body">
                   <div class="link-icon">&#9829;</div>
-                  <div class="link-name">PATREON</div>
+                  <h3 class="link-name">PATREON</h3>
                   <div class="link-desc">Weekly bonus eps, sillies &amp; pitch YOUR podcast!</div>
-                  <button type="button" class="retro-btn">CLICK HERE!!!!</button>
+                  <span class="retro-btn">CLICK HERE!!!!</span>
                 </div>
               </div>
             </a>
@@ -162,19 +167,19 @@
               <div class="window link-window">
                 <div class="title-bar">
                   <div class="title-bar-text">
-                    <img src="https://win98icons.alexmeub.com/icons/png/media_player_stream_video-0.png" alt="" width="16" height="16">
+                    <img src="icons/media-player.png" alt="" width="16" height="16">
                     YouTube.exe
                   </div>
                   <div class="title-bar-controls">
-                    <button type="button" class="title-btn">_</button>
-                    <button type="button" class="title-btn close-btn">&#x2715;</button>
+                    <span class="title-btn" aria-hidden="true">_</span>
+                    <span class="title-btn close-btn" aria-hidden="true">&#x2715;</span>
                   </div>
                 </div>
                 <div class="link-window-body">
                   <div class="link-icon">&#9654;&#65038;</div>
-                  <div class="link-name">YOUTUBE</div>
+                  <h3 class="link-name">YOUTUBE</h3>
                   <div class="link-desc">Watch What's Our Podcast</div>
-                  <button type="button" class="retro-btn">CLICK HERE!!!!</button>
+                  <span class="retro-btn">CLICK HERE!!!!</span>
                 </div>
               </div>
             </a>
@@ -184,19 +189,19 @@
               <div class="window link-window">
                 <div class="title-bar">
                   <div class="title-bar-text">
-                    <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-0.png" alt="" width="16" height="16">
+                    <img src="icons/cd-audio.png" alt="" width="16" height="16">
                     Winamp.exe
                   </div>
                   <div class="title-bar-controls">
-                    <button type="button" class="title-btn">_</button>
-                    <button type="button" class="title-btn close-btn">&#x2715;</button>
+                    <span class="title-btn" aria-hidden="true">_</span>
+                    <span class="title-btn close-btn" aria-hidden="true">&#x2715;</span>
                   </div>
                 </div>
                 <div class="link-window-body">
                   <div class="link-icon">&#9835;</div>
-                  <div class="link-name">SPOTIFY</div>
+                  <h3 class="link-name">SPOTIFY</h3>
                   <div class="link-desc">Listen to Sloppin Out</div>
-                  <button type="button" class="retro-btn">CLICK HERE!!!!</button>
+                  <span class="retro-btn">CLICK HERE!!!!</span>
                 </div>
               </div>
             </a>
@@ -206,19 +211,19 @@
               <div class="window link-window">
                 <div class="title-bar">
                   <div class="title-bar-text">
-                    <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-0.png" alt="" width="16" height="16">
+                    <img src="icons/cd-audio.png" alt="" width="16" height="16">
                     iTunes.exe
                   </div>
                   <div class="title-bar-controls">
-                    <button type="button" class="title-btn">_</button>
-                    <button type="button" class="title-btn close-btn">&#x2715;</button>
+                    <span class="title-btn" aria-hidden="true">_</span>
+                    <span class="title-btn close-btn" aria-hidden="true">&#x2715;</span>
                   </div>
                 </div>
                 <div class="link-window-body">
                   <div class="link-icon">&#127911;</div>
-                  <div class="link-name">APPLE</div>
+                  <h3 class="link-name">APPLE</h3>
                   <div class="link-desc">Listen on Apple Podcasts</div>
-                  <button type="button" class="retro-btn">CLICK HERE!!!!</button>
+                  <span class="retro-btn">CLICK HERE!!!!</span>
                 </div>
               </div>
             </a>
@@ -228,19 +233,19 @@
               <div class="window link-window">
                 <div class="title-bar">
                   <div class="title-bar-text">
-                    <img src="https://win98icons.alexmeub.com/icons/png/internet_explorer-0.png" alt="" width="16" height="16">
+                    <img src="icons/internet-explorer.png" alt="" width="16" height="16">
                     RSS Feed
                   </div>
                   <div class="title-bar-controls">
-                    <button type="button" class="title-btn">_</button>
-                    <button type="button" class="title-btn close-btn">&#x2715;</button>
+                    <span class="title-btn" aria-hidden="true">_</span>
+                    <span class="title-btn close-btn" aria-hidden="true">&#x2715;</span>
                   </div>
                 </div>
                 <div class="link-window-body">
                   <div class="link-icon">&#128225;</div>
-                  <div class="link-name">RSS</div>
+                  <h3 class="link-name">RSS</h3>
                   <div class="link-desc">Subscribe via RSS</div>
-                  <button type="button" class="retro-btn">CLICK HERE!!!!</button>
+                  <span class="retro-btn">CLICK HERE!!!!</span>
                 </div>
               </div>
             </a>
@@ -253,13 +258,13 @@
           <div class="window about-window">
             <div class="title-bar">
               <div class="title-bar-text">
-                <img src="https://win98icons.alexmeub.com/icons/png/msagent-0.png" alt="" width="16" height="16">
+                <img src="icons/msagent.png" alt="" width="16" height="16">
                 About - Notepad
               </div>
               <div class="title-bar-controls">
-                <button type="button" class="title-btn">_</button>
-                <button type="button" class="title-btn">&#9633;</button>
-                <button type="button" class="title-btn close-btn">&#x2715;</button>
+                <button type="button" class="title-btn" aria-hidden="true" tabindex="-1">_</button>
+                <button type="button" class="title-btn" aria-hidden="true" tabindex="-1">&#9633;</button>
+                <button type="button" class="title-btn close-btn" aria-label="Close">&#x2715;</button>
               </div>
             </div>
             <div class="about-body">
@@ -287,7 +292,7 @@
           </div>
         </div>
 
-      </div>
+      </main>
       <!-- Status bar -->
       <div class="status-bar">
         <div class="status-item">&#128279; Done</div>

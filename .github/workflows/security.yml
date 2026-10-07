@@ -1,32 +1,49 @@
 name: security
 
+# No paths: filter. The previous one matched only JS/TS/package files, so a PR
+# touching index.html or style.css — i.e. most PRs on a static site — ran no
+# security checks at all.
 on:
   pull_request:
     branches: [main]
-    paths:
-      - "**/*.js"
-      - "**/*.mjs"
-      - "**/*.ts"
-      - "**/*.tsx"
-      - "**/*.jsx"
-      - "package.json"
-      - "package-lock.json"
-      - ".github/workflows/security.yml"
   push:
     branches: [main]
+  schedule:
+    # Weekly, so dead podcast/Patreon links surface without waiting for a PR.
+    # Note: the reusable link-check only opens a tracking issue on push events, so
+    # the cron relies on fail-on-error below to make a dead link visible at all.
+    - cron: "0 6 * * 1"
 
 permissions:
   contents: read
   pull-requests: write
+  issues: write
 
 jobs:
-  sast:
-    uses: binbashburns/security-pipelines/.github/workflows/sast.yml@main
-    with:
-      language: javascript,typescript
-
-  sbom:
-    uses: binbashburns/security-pipelines/.github/workflows/sbom-vuln.yml@main
-
+  # Stage 1 — gate: fail fast on credentials before anything else runs.
   secrets:
     uses: binbashburns/security-pipelines/.github/workflows/secrets.yml@main
+
+  # Stage 2 — static analysis, dependency inventory and link audit, in parallel.
+  sast:
+    needs: secrets
+    uses: binbashburns/security-pipelines/.github/workflows/sast.yml@main
+    with:
+      language: javascript
+
+  sbom:
+    needs: secrets
+    uses: binbashburns/security-pipelines/.github/workflows/sbom-vuln.yml@main
+
+  link-check:
+    needs: secrets
+    uses: binbashburns/security-pipelines/.github/workflows/link-check.yml@main
+    with:
+      paths: "**/*.html **/*.md"
+      create-issue: true
+      fail-on-error: true
+
+  # Stage 3 — dynamic scan against the site served from the repo root.
+  dast:
+    needs: secrets
+    uses: binbashburns/security-pipelines/.github/workflows/dast.yml@main

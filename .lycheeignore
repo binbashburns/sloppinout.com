@@ -1,0 +1,17 @@
+# Hosts that block automated requests and would otherwise open a weekly
+# "Link check failures" issue for links that are fine in a real browser.
+# Remove an entry if you want that link genuinely verified.
+
+# Social platforms serve a login wall / 403 to non-browser clients
+https://x\.com/.*
+https://www\.instagram\.com/.*
+https://www\.tiktok\.com/.*
+
+# Rejects HEAD and rate-limits datacenter IPs
+https://itunes\.apple\.com/.*
+
+# Cloudflare JS challenge to non-browser clients
+https://pixabay\.com/.*
+
+# 403s datacenter IPs (GitHub runners); fine from a residential connection
+https://www\.patreon\.com/.*
